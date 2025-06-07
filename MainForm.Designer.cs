@@ -39,7 +39,7 @@
             this.btnChange = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.lstTasks = new System.Windows.Forms.ListBox();
-            this.lblTasks = new System.Windows.Forms.Label();
+            this.grpToDo = new System.Windows.Forms.GroupBox();
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFileNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,6 +52,7 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.clockTimer = new System.Windows.Forms.Timer(this.components);
             this.lblClock = new System.Windows.Forms.Label();
+            this.grpToDo.SuspendLayout();
             this.menuMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,7 +120,8 @@
             // 
             // btnChange
             // 
-            this.btnChange.Location = new System.Drawing.Point(96, 185);
+            this.btnChange.Enabled = false;
+            this.btnChange.Location = new System.Drawing.Point(15, 420);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(75, 23);
             this.btnChange.TabIndex = 7;
@@ -129,7 +131,8 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(177, 185);
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(100, 420);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 8;
@@ -139,21 +142,23 @@
             // 
             // lstTasks
             // 
+            this.lstTasks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstTasks.FormattingEnabled = true;
-            this.lstTasks.Location = new System.Drawing.Point(15, 237);
+            this.lstTasks.Location = new System.Drawing.Point(3, 16);
             this.lstTasks.Name = "lstTasks";
-            this.lstTasks.Size = new System.Drawing.Size(457, 173);
+            this.lstTasks.Size = new System.Drawing.Size(451, 157);
             this.lstTasks.TabIndex = 9;
             this.lstTasks.SelectedIndexChanged += new System.EventHandler(this.lstTasks_SelectedIndexChanged);
             // 
-            // lblTasks
+            // grpToDo
             // 
-            this.lblTasks.AutoSize = true;
-            this.lblTasks.Location = new System.Drawing.Point(12, 221);
-            this.lblTasks.Name = "lblTasks";
-            this.lblTasks.Size = new System.Drawing.Size(36, 13);
-            this.lblTasks.TabIndex = 10;
-            this.lblTasks.Text = "Tasks";
+            this.grpToDo.Controls.Add(this.lstTasks);
+            this.grpToDo.Location = new System.Drawing.Point(15, 237);
+            this.grpToDo.Name = "grpToDo";
+            this.grpToDo.Size = new System.Drawing.Size(457, 176);
+            this.grpToDo.TabIndex = 10;
+            this.grpToDo.TabStop = false;
+            this.grpToDo.Text = "To Do";
             // 
             // menuMain
             // 
@@ -181,33 +186,33 @@
             // menuFileNew
             // 
             this.menuFileNew.Name = "menuFileNew";
-            this.menuFileNew.Size = new System.Drawing.Size(180, 22);
+            this.menuFileNew.Size = new System.Drawing.Size(146, 22);
             this.menuFileNew.Text = "New";
             this.menuFileNew.Click += new System.EventHandler(this.menuFileNew_Click);
             // 
             // menuFileOpen
             // 
             this.menuFileOpen.Name = "menuFileOpen";
-            this.menuFileOpen.Size = new System.Drawing.Size(180, 22);
+            this.menuFileOpen.Size = new System.Drawing.Size(146, 22);
             this.menuFileOpen.Text = "Open data file";
             this.menuFileOpen.Click += new System.EventHandler(this.menuFileOpen_Click);
             // 
             // menuFileSave
             // 
             this.menuFileSave.Name = "menuFileSave";
-            this.menuFileSave.Size = new System.Drawing.Size(180, 22);
+            this.menuFileSave.Size = new System.Drawing.Size(146, 22);
             this.menuFileSave.Text = "Save data file";
             this.menuFileSave.Click += new System.EventHandler(this.menuFileSave_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
             // 
             // menuFileExit
             // 
             this.menuFileExit.Name = "menuFileExit";
-            this.menuFileExit.Size = new System.Drawing.Size(180, 22);
+            this.menuFileExit.Size = new System.Drawing.Size(146, 22);
             this.menuFileExit.Text = "Exit";
             this.menuFileExit.Click += new System.EventHandler(this.menuFileExit_Click);
             // 
@@ -222,19 +227,20 @@
             // menuHelpAbout
             // 
             this.menuHelpAbout.Name = "menuHelpAbout";
-            this.menuHelpAbout.Size = new System.Drawing.Size(180, 22);
+            this.menuHelpAbout.Size = new System.Drawing.Size(107, 22);
             this.menuHelpAbout.Text = "About...";
             this.menuHelpAbout.Click += new System.EventHandler(this.menuHelpAbout_Click);
             // 
             // clockTimer
             // 
+            this.clockTimer.Interval = 1000;
             this.clockTimer.Tick += new System.EventHandler(this.clockTimer_Tick);
             // 
             // lblClock
             // 
             this.lblClock.AutoSize = true;
             this.lblClock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClock.Location = new System.Drawing.Point(390, 53);
+            this.lblClock.Location = new System.Drawing.Point(380, 420);
             this.lblClock.Name = "lblClock";
             this.lblClock.Size = new System.Drawing.Size(82, 16);
             this.lblClock.TabIndex = 12;
@@ -244,10 +250,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 422);
+            this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.lblClock);
-            this.Controls.Add(this.lblTasks);
-            this.Controls.Add(this.lstTasks);
+            this.Controls.Add(this.grpToDo);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnChange);
             this.Controls.Add(this.btnAdd);
@@ -260,7 +265,8 @@
             this.Controls.Add(this.menuMain);
             this.MainMenuStrip = this.menuMain;
             this.Name = "MainForm";
-            this.Text = "ToDo Reminder";
+            this.Text = "ToDo Reminder by [Your Name]";
+            this.grpToDo.ResumeLayout(false);
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
             this.ResumeLayout(false);
@@ -280,7 +286,7 @@
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ListBox lstTasks;
-        private System.Windows.Forms.Label lblTasks;
+        private System.Windows.Forms.GroupBox grpToDo;
         private System.Windows.Forms.MenuStrip menuMain;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuFileNew;
