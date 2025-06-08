@@ -22,6 +22,8 @@ namespace ToDoReminder
             taskManager = new TaskManager();
             fileName = Application.StartupPath + "\\reminders.txt";
             InitializeGUI();
+
+            this.Resize += MainForm_Resize;
         }
 
         private void InitializeGUI()
@@ -48,7 +50,22 @@ namespace ToDoReminder
 
             // Clear inputs
             txtDescription.Clear();
-            lstTasks.Items.Clear();
+            lvTasks.Items.Clear();
+
+            // Set up ListView columns
+            colDate.Text = "Date";
+            colTime.Text = "Time";
+            colPriority.Text = "Priority";
+            colDescription.Text = "Description";
+
+            // Set column widths
+            colDate.Width = 100;
+            colTime.Width = 60;
+            colPriority.Width = 80;
+            colDescription.Width = 200;
+
+            // Adjust Description column to fill remaining space
+            lvTasks.Columns[3].Width = -2; // -2 makes it auto-size to content, -1 to header
 
             // Set up clock timer
             clockTimer.Interval = 1000;
@@ -68,18 +85,40 @@ namespace ToDoReminder
 
         private void UpdateGUI()
         {
-            lstTasks.Items.Clear();
+            lvTasks.Items.Clear();
             string[] taskInfo = taskManager.GetTaskListInfo();
-            if (taskInfo != null)
+
+            foreach (string task in taskInfo)
             {
-                lstTasks.Items.AddRange(taskInfo);
+                // Split into left and right of the first " - "
+                string[] parts = task.Split(new[] { " - " }, 2, StringSplitOptions.None);
+                if (parts.Length == 2)
+                {
+                    // The left part contains date, time, and priority (possibly multi-word)
+                    string[] firstPart = parts[0].Split(' ');
+                    if (firstPart.Length >= 3)
+                    {
+                        string date = firstPart[0];
+                        string time = firstPart[1];
+                        // Priority is everything after date and time, joined by space
+                        string priority = string.Join(" ", firstPart.Skip(2));
+                        string description = parts[1];
+
+                        ListViewItem item = new ListViewItem(date); // Date
+                        item.SubItems.Add(time); // Time
+                        item.SubItems.Add(priority); // Priority (multi-word supported)
+                        item.SubItems.Add(description); // Description
+                        lvTasks.Items.Add(item);
+                    }
+                }
             }
+
             UpdateButtonStates();
         }
 
         private void UpdateButtonStates()
         {
-            bool hasSelection = lstTasks.SelectedIndex >= 0;
+            bool hasSelection = (lvTasks.SelectedItems.Count > 0);
             btnChange.Enabled = hasSelection;
             btnDelete.Enabled = hasSelection;
         }
@@ -113,8 +152,7 @@ namespace ToDoReminder
 
         private void ChangeTask()
         {
-            int index = lstTasks.SelectedIndex;
-            if (index < 0)
+            if (lvTasks.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Please select a task to change.", "Selection Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -128,6 +166,7 @@ namespace ToDoReminder
                 return;
             }
 
+            int index = lvTasks.SelectedIndices[0];
             Task task = new Task();
             task.Date = dtpDate.Value;
             task.Description = txtDescription.Text;
@@ -148,8 +187,7 @@ namespace ToDoReminder
 
         private void DeleteTask()
         {
-            int index = lstTasks.SelectedIndex;
-            if (index < 0)
+            if (lvTasks.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Please select a task to delete.", "Selection Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -161,6 +199,7 @@ namespace ToDoReminder
 
             if (result == DialogResult.OK)
             {
+                int index = lvTasks.SelectedIndices[0];
                 if (taskManager.DeleteTask(index))
                 {
                     UpdateGUI();
@@ -173,11 +212,25 @@ namespace ToDoReminder
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e) => AddTask();
-        private void btnChange_Click(object sender, EventArgs e) => ChangeTask();
-        private void btnDelete_Click(object sender, EventArgs e) => DeleteTask();
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            AddTask();
+        }
 
-        private void menuFileNew_Click(object sender, EventArgs e) => InitializeGUI();
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            ChangeTask();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DeleteTask();
+        }
+
+        private void menuFileNew_Click(object sender, EventArgs e)
+        {
+            InitializeGUI();
+        }
 
         private void menuFileOpen_Click(object sender, EventArgs e)
         {
@@ -228,9 +281,30 @@ namespace ToDoReminder
             lblClock.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
-        private void lstTasks_SelectedIndexChanged(object sender, EventArgs e)
+        private void lvTasks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (lvTasks.SelectedItems.Count > 0)
+            {
+                ListViewItem item = lvTasks.SelectedItems[0];
+                try
+                {
+                    dtpDate.Value = DateTime.Parse(item.SubItems[0].Text + " " + item.SubItems[1].Text);
+                    cmbPriority.SelectedIndex = (int)Enum.Parse(typeof(PriorityType), item.SubItems[2].Text.Replace(" ", "_"));
+                    txtDescription.Text = item.SubItems[3].Text;
+                }
+                catch
+                {
+                    // Handle parsing errors if needed
+                }
+            }
             UpdateButtonStates();
+        }
+
+        private void MainForm_Resize(object? sender, EventArgs e)
+        {
+            // Adjust Description column to fill remaining space
+            int otherColumnsWidth = lvTasks.Columns[0].Width + lvTasks.Columns[1].Width + lvTasks.Columns[2].Width;
+            lvTasks.Columns[3].Width = lvTasks.ClientSize.Width - otherColumnsWidth - 4; // 4 for border
         }
     }
 }

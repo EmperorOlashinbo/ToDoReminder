@@ -56,8 +56,7 @@ namespace ToDoReminder
 
         public override string ToString()
         {
-            return date.ToShortDateString() + " " + GetTimeString() + " " +
-                   GetPriorityString() + " - " + description;
+            return $"{date.ToShortDateString()} {GetTimeString()} {GetPriorityString()} - {description}";
         }
     }
 }

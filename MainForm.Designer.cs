@@ -28,249 +28,285 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.lblPriority = new System.Windows.Forms.Label();
-            this.cmbPriority = new System.Windows.Forms.ComboBox();
-            this.lblDescription = new System.Windows.Forms.Label();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnChange = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.lstTasks = new System.Windows.Forms.ListBox();
-            this.grpToDo = new System.Windows.Forms.GroupBox();
-            this.menuMain = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFileNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFileOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFileSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuFileExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.clockTimer = new System.Windows.Forms.Timer(this.components);
-            this.lblClock = new System.Windows.Forms.Label();
-            this.grpToDo.SuspendLayout();
-            this.menuMain.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            dtpDate = new DateTimePicker();
+            lblDate = new Label();
+            lblPriority = new Label();
+            cmbPriority = new ComboBox();
+            lblDescription = new Label();
+            txtDescription = new TextBox();
+            btnAdd = new Button();
+            btnChange = new Button();
+            btnDelete = new Button();
+            grpToDo = new GroupBox();
+            lvTasks = new ListView();
+            colDate = new ColumnHeader();
+            colTime = new ColumnHeader();
+            colPriority = new ColumnHeader();
+            colDescription = new ColumnHeader();
+            menuMain = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            menuFileNew = new ToolStripMenuItem();
+            menuFileOpen = new ToolStripMenuItem();
+            menuFileSave = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            menuFileExit = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            menuHelpAbout = new ToolStripMenuItem();
+            toolTip = new ToolTip(components);
+            clockTimer = new System.Windows.Forms.Timer(components);
+            lblClock = new Label();
+            grpToDo.SuspendLayout();
+            menuMain.SuspendLayout();
+            SuspendLayout();
             // 
             // dtpDate
             // 
-            this.dtpDate.CustomFormat = "yyyy-MM-dd HH:mm";
-            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(15, 53);
-            this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(200, 20);
-            this.dtpDate.TabIndex = 0;
+            dtpDate.CustomFormat = "yyyy-MM-dd HH:mm";
+            dtpDate.Format = DateTimePickerFormat.Custom;
+            dtpDate.Location = new Point(102, 64);
+            dtpDate.Margin = new Padding(4, 3, 4, 3);
+            dtpDate.Name = "dtpDate";
+            dtpDate.Size = new Size(174, 23);
+            dtpDate.TabIndex = 0;
             // 
             // lblDate
             // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(12, 37);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(30, 13);
-            this.lblDate.TabIndex = 1;
-            this.lblDate.Text = "Date";
+            lblDate.AutoSize = true;
+            lblDate.Location = new Point(13, 64);
+            lblDate.Margin = new Padding(4, 0, 4, 0);
+            lblDate.Name = "lblDate";
+            lblDate.Size = new Size(81, 15);
+            lblDate.TabIndex = 1;
+            lblDate.Text = "Date and time";
             // 
             // lblPriority
             // 
-            this.lblPriority.AutoSize = true;
-            this.lblPriority.Location = new System.Drawing.Point(12, 85);
-            this.lblPriority.Name = "lblPriority";
-            this.lblPriority.Size = new System.Drawing.Size(38, 13);
-            this.lblPriority.TabIndex = 2;
-            this.lblPriority.Text = "Priority";
+            lblPriority.AutoSize = true;
+            lblPriority.Location = new Point(341, 67);
+            lblPriority.Margin = new Padding(4, 0, 4, 0);
+            lblPriority.Name = "lblPriority";
+            lblPriority.Size = new Size(45, 15);
+            lblPriority.TabIndex = 2;
+            lblPriority.Text = "Priority";
             // 
             // cmbPriority
             // 
-            this.cmbPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPriority.FormattingEnabled = true;
-            this.cmbPriority.Location = new System.Drawing.Point(15, 101);
-            this.cmbPriority.Name = "cmbPriority";
-            this.cmbPriority.Size = new System.Drawing.Size(200, 21);
-            this.cmbPriority.TabIndex = 3;
+            cmbPriority.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbPriority.FormattingEnabled = true;
+            cmbPriority.Location = new Point(394, 64);
+            cmbPriority.Margin = new Padding(4, 3, 4, 3);
+            cmbPriority.Name = "cmbPriority";
+            cmbPriority.Size = new Size(174, 23);
+            cmbPriority.TabIndex = 3;
             // 
             // lblDescription
             // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(12, 134);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(60, 13);
-            this.lblDescription.TabIndex = 4;
-            this.lblDescription.Text = "Description";
+            lblDescription.AutoSize = true;
+            lblDescription.Location = new Point(13, 106);
+            lblDescription.Margin = new Padding(4, 0, 4, 0);
+            lblDescription.Name = "lblDescription";
+            lblDescription.Size = new Size(37, 15);
+            lblDescription.TabIndex = 4;
+            lblDescription.Text = "To Do";
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(15, 150);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(200, 20);
-            this.txtDescription.TabIndex = 5;
+            txtDescription.Location = new Point(66, 106);
+            txtDescription.Margin = new Padding(4, 3, 4, 3);
+            txtDescription.Name = "txtDescription";
+            txtDescription.Size = new Size(502, 23);
+            txtDescription.TabIndex = 5;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(15, 185);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 6;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            btnAdd.BackColor = SystemColors.ControlDark;
+            btnAdd.Location = new Point(249, 146);
+            btnAdd.Margin = new Padding(4, 3, 4, 3);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(88, 27);
+            btnAdd.TabIndex = 6;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnChange
             // 
-            this.btnChange.Enabled = false;
-            this.btnChange.Location = new System.Drawing.Point(15, 420);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(75, 23);
-            this.btnChange.TabIndex = 7;
-            this.btnChange.Text = "Change";
-            this.btnChange.UseVisualStyleBackColor = true;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            btnChange.Enabled = false;
+            btnChange.Location = new Point(18, 485);
+            btnChange.Margin = new Padding(4, 3, 4, 3);
+            btnChange.Name = "btnChange";
+            btnChange.Size = new Size(88, 27);
+            btnChange.TabIndex = 7;
+            btnChange.Text = "Change";
+            btnChange.UseVisualStyleBackColor = true;
+            btnChange.Click += btnChange_Click;
             // 
             // btnDelete
             // 
-            this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(100, 420);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // lstTasks
-            // 
-            this.lstTasks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstTasks.FormattingEnabled = true;
-            this.lstTasks.Location = new System.Drawing.Point(3, 16);
-            this.lstTasks.Name = "lstTasks";
-            this.lstTasks.Size = new System.Drawing.Size(451, 157);
-            this.lstTasks.TabIndex = 9;
-            this.lstTasks.SelectedIndexChanged += new System.EventHandler(this.lstTasks_SelectedIndexChanged);
+            btnDelete.Enabled = false;
+            btnDelete.Location = new Point(117, 485);
+            btnDelete.Margin = new Padding(4, 3, 4, 3);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(88, 27);
+            btnDelete.TabIndex = 8;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // grpToDo
             // 
-            this.grpToDo.Controls.Add(this.lstTasks);
-            this.grpToDo.Location = new System.Drawing.Point(15, 237);
-            this.grpToDo.Name = "grpToDo";
-            this.grpToDo.Size = new System.Drawing.Size(457, 176);
-            this.grpToDo.TabIndex = 10;
-            this.grpToDo.TabStop = false;
-            this.grpToDo.Text = "To Do";
+            grpToDo.Controls.Add(lvTasks);
+            grpToDo.Location = new Point(18, 233);
+            grpToDo.Margin = new Padding(4, 3, 4, 3);
+            grpToDo.Name = "grpToDo";
+            grpToDo.Padding = new Padding(4, 3, 4, 3);
+            grpToDo.Size = new Size(713, 243);
+            grpToDo.TabIndex = 10;
+            grpToDo.TabStop = false;
+            grpToDo.Text = "To Do";
+            // 
+            // lvTasks
+            // 
+            lvTasks.Columns.AddRange(new ColumnHeader[] { colDate, colTime, colPriority, colDescription });
+            lvTasks.Dock = DockStyle.Fill;
+            lvTasks.FullRowSelect = true;
+            lvTasks.GridLines = true;
+            lvTasks.Location = new Point(4, 19);
+            lvTasks.Margin = new Padding(4, 3, 4, 3);
+            lvTasks.Name = "lvTasks";
+            lvTasks.Size = new Size(705, 221);
+            lvTasks.TabIndex = 0;
+            lvTasks.UseCompatibleStateImageBehavior = false;
+            lvTasks.View = View.Details;
+            lvTasks.SelectedIndexChanged += lvTasks_SelectedIndexChanged;
+            // 
+            // colDate
+            // 
+            colDate.Text = "Date";
+            colDate.Width = 100;
+            // 
+            // colTime
+            // 
+            colTime.Text = "Time";
+            // 
+            // colPriority
+            // 
+            colPriority.Text = "Priority";
+            colPriority.Width = 160;
+            // 
+            // colDescription
+            // 
+            colDescription.Text = "Description";
+            colDescription.Width = 350;
             // 
             // menuMain
             // 
-            this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuMain.Location = new System.Drawing.Point(0, 0);
-            this.menuMain.Name = "menuMain";
-            this.menuMain.Size = new System.Drawing.Size(484, 24);
-            this.menuMain.TabIndex = 11;
-            this.menuMain.Text = "menuStrip1";
+            menuMain.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, helpToolStripMenuItem });
+            menuMain.Location = new Point(0, 0);
+            menuMain.Name = "menuMain";
+            menuMain.Padding = new Padding(7, 2, 0, 2);
+            menuMain.Size = new Size(784, 24);
+            menuMain.TabIndex = 11;
+            menuMain.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuFileNew,
-            this.menuFileOpen,
-            this.menuFileSave,
-            this.toolStripSeparator1,
-            this.menuFileExit});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuFileNew, menuFileOpen, menuFileSave, toolStripSeparator1, menuFileExit });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Text = "File";
             // 
             // menuFileNew
             // 
-            this.menuFileNew.Name = "menuFileNew";
-            this.menuFileNew.Size = new System.Drawing.Size(146, 22);
-            this.menuFileNew.Text = "New";
-            this.menuFileNew.Click += new System.EventHandler(this.menuFileNew_Click);
+            menuFileNew.Name = "menuFileNew";
+            menuFileNew.Size = new Size(148, 22);
+            menuFileNew.Text = "New";
+            menuFileNew.Click += menuFileNew_Click;
             // 
             // menuFileOpen
             // 
-            this.menuFileOpen.Name = "menuFileOpen";
-            this.menuFileOpen.Size = new System.Drawing.Size(146, 22);
-            this.menuFileOpen.Text = "Open data file";
-            this.menuFileOpen.Click += new System.EventHandler(this.menuFileOpen_Click);
+            menuFileOpen.Name = "menuFileOpen";
+            menuFileOpen.Size = new Size(148, 22);
+            menuFileOpen.Text = "Open data file";
+            menuFileOpen.Click += menuFileOpen_Click;
             // 
             // menuFileSave
             // 
-            this.menuFileSave.Name = "menuFileSave";
-            this.menuFileSave.Size = new System.Drawing.Size(146, 22);
-            this.menuFileSave.Text = "Save data file";
-            this.menuFileSave.Click += new System.EventHandler(this.menuFileSave_Click);
+            menuFileSave.Name = "menuFileSave";
+            menuFileSave.Size = new Size(148, 22);
+            menuFileSave.Text = "Save data file";
+            menuFileSave.Click += menuFileSave_Click;
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(145, 6);
             // 
             // menuFileExit
             // 
-            this.menuFileExit.Name = "menuFileExit";
-            this.menuFileExit.Size = new System.Drawing.Size(146, 22);
-            this.menuFileExit.Text = "Exit";
-            this.menuFileExit.Click += new System.EventHandler(this.menuFileExit_Click);
+            menuFileExit.Name = "menuFileExit";
+            menuFileExit.Size = new Size(148, 22);
+            menuFileExit.Text = "Exit";
+            menuFileExit.Click += menuFileExit_Click;
             // 
             // helpToolStripMenuItem
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuHelpAbout});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuHelpAbout });
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(44, 20);
+            helpToolStripMenuItem.Text = "Help";
             // 
             // menuHelpAbout
             // 
-            this.menuHelpAbout.Name = "menuHelpAbout";
-            this.menuHelpAbout.Size = new System.Drawing.Size(107, 22);
-            this.menuHelpAbout.Text = "About...";
-            this.menuHelpAbout.Click += new System.EventHandler(this.menuHelpAbout_Click);
+            menuHelpAbout.Name = "menuHelpAbout";
+            menuHelpAbout.Size = new Size(116, 22);
+            menuHelpAbout.Text = "About...";
+            menuHelpAbout.Click += menuHelpAbout_Click;
             // 
             // clockTimer
             // 
-            this.clockTimer.Interval = 1000;
-            this.clockTimer.Tick += new System.EventHandler(this.clockTimer_Tick);
+            clockTimer.Interval = 1000;
+            clockTimer.Tick += clockTimer_Tick;
             // 
             // lblClock
             // 
-            this.lblClock.AutoSize = true;
-            this.lblClock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClock.Location = new System.Drawing.Point(380, 420);
-            this.lblClock.Name = "lblClock";
-            this.lblClock.Size = new System.Drawing.Size(82, 16);
-            this.lblClock.TabIndex = 12;
-            this.lblClock.Text = "00:00:00";
+            lblClock.AutoSize = true;
+            lblClock.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblClock.ForeColor = SystemColors.Highlight;
+            lblClock.Location = new Point(664, 490);
+            lblClock.Margin = new Padding(4, 0, 4, 0);
+            lblClock.Name = "lblClock";
+            lblClock.Size = new Size(63, 16);
+            lblClock.TabIndex = 12;
+            lblClock.Text = "00:00:00";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 461);
-            this.Controls.Add(this.lblClock);
-            this.Controls.Add(this.grpToDo);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnChange);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.txtDescription);
-            this.Controls.Add(this.lblDescription);
-            this.Controls.Add(this.cmbPriority);
-            this.Controls.Add(this.lblPriority);
-            this.Controls.Add(this.lblDate);
-            this.Controls.Add(this.dtpDate);
-            this.Controls.Add(this.menuMain);
-            this.MainMenuStrip = this.menuMain;
-            this.Name = "MainForm";
-            this.Text = "ToDo Reminder by [Your Name]";
-            this.grpToDo.ResumeLayout(false);
-            this.menuMain.ResumeLayout(false);
-            this.menuMain.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(784, 532);
+            Controls.Add(lblClock);
+            Controls.Add(grpToDo);
+            Controls.Add(btnDelete);
+            Controls.Add(btnChange);
+            Controls.Add(btnAdd);
+            Controls.Add(txtDescription);
+            Controls.Add(lblDescription);
+            Controls.Add(cmbPriority);
+            Controls.Add(lblPriority);
+            Controls.Add(lblDate);
+            Controls.Add(dtpDate);
+            Controls.Add(menuMain);
+            MainMenuStrip = menuMain;
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "MainForm";
+            Text = "ToDo Reminder by Ibrahim";
+            grpToDo.ResumeLayout(false);
+            menuMain.ResumeLayout(false);
+            menuMain.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -285,8 +321,12 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.ListBox lstTasks;
         private System.Windows.Forms.GroupBox grpToDo;
+        private System.Windows.Forms.ListView lvTasks;
+        private System.Windows.Forms.ColumnHeader colDate;
+        private System.Windows.Forms.ColumnHeader colTime;
+        private System.Windows.Forms.ColumnHeader colPriority;
+        private System.Windows.Forms.ColumnHeader colDescription;
         private System.Windows.Forms.MenuStrip menuMain;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuFileNew;
