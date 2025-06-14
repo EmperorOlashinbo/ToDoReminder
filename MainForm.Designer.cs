@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dtpDate = new DateTimePicker();
             lblDate = new Label();
             lblPriority = new Label();
@@ -220,34 +221,34 @@
             // menuFileNew
             // 
             menuFileNew.Name = "menuFileNew";
-            menuFileNew.Size = new Size(148, 22);
-            menuFileNew.Text = "New";
+            menuFileNew.Size = new Size(167, 22);
+            menuFileNew.Text = "New          Cntl+N";
             menuFileNew.Click += menuFileNew_Click;
             // 
             // menuFileOpen
             // 
             menuFileOpen.Name = "menuFileOpen";
-            menuFileOpen.Size = new Size(148, 22);
+            menuFileOpen.Size = new Size(167, 22);
             menuFileOpen.Text = "Open data file";
             menuFileOpen.Click += menuFileOpen_Click;
             // 
             // menuFileSave
             // 
             menuFileSave.Name = "menuFileSave";
-            menuFileSave.Size = new Size(148, 22);
+            menuFileSave.Size = new Size(167, 22);
             menuFileSave.Text = "Save data file";
             menuFileSave.Click += menuFileSave_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(145, 6);
+            toolStripSeparator1.Size = new Size(164, 6);
             // 
             // menuFileExit
             // 
             menuFileExit.Name = "menuFileExit";
-            menuFileExit.Size = new Size(148, 22);
-            menuFileExit.Text = "Exit";
+            menuFileExit.Size = new Size(167, 22);
+            menuFileExit.Text = "Exit           Alt+F4";
             menuFileExit.Click += menuFileExit_Click;
             // 
             // helpToolStripMenuItem
@@ -298,6 +299,7 @@
             Controls.Add(lblDate);
             Controls.Add(dtpDate);
             Controls.Add(menuMain);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuMain;
             Margin = new Padding(4, 3, 4, 3);
             Name = "MainForm";
